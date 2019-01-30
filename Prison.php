@@ -26,26 +26,8 @@ class Prison extends PluginBase implements Listener{
     private $db;
     
     public function onEnable() : void{
-    	/**
-        $ip = Internet::getIp();
-		$url = Internet::getURL("https://raw.githubusercontent.com/alvin0319/Server/master/Server.yml");
-		$file = yaml_parse($url);
-		$pname = $this->getDescription()->getName();
-		if (! isset($file[$pname])) {
-			$this->getLogger()->info("§c이 플러그인은 사용이 금지된 플러그인입니다.");
-			$this->getServer()->getPluginManager()->disablePlugin($this);
-			return;
-		}
-		if (! isset($file[$pname] [$ip])) {
-			$this->getLogger()->critical("이 플러그인은 구매하셔야 사용이 가능합니다. §e카카오톡 immoonbot");
-			$this->getServer()->getPluginManager()->disablePlugin($this);
-			return;
-		}
-		else {
-			*/
-			$this->getLogger()->info("§b인식이 되었습니다.");
-			$this->getServer()->getPluginManager()->registerEvents($this, $this);
-		//}
+	$this->getLogger()->info("§b인식이 되었습니다.");
+	$this->getServer()->getPluginManager()->registerEvents($this, $this);
         @mkdir($this->getDataFolder());
         $this->config = new Config($this->getDataFolder() . "Config.yml", Config::YAML);
         $this->db = $this->config->getAll();
@@ -67,8 +49,8 @@ class Prison extends PluginBase implements Listener{
         $x = (int) round($player->x - 0.5);
         $y = (int) round($player->y - 1);
         $z = (int) round($player->z - 0.5);
-        $id = $player->getLevel()->getBlockIdAt($x, $y, $z);
-        $data = $player->getLevel()->getBlockDataAt($x, $y, $z);
+        $id = $player->getLevel()->getBlock(new Vector3($x, $y, $z))->getId();
+        $data = $player->getLevel()->getBlock(new Vector3($x, $y, $z))->getDamage();
         if (isset($this->db[$name] ["감옥"])) {
             $a = explode(":", $this->db[$name] ["감옥"]);
             if ($a[1] > 0) {
