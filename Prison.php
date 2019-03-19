@@ -20,6 +20,7 @@ use pocketmine\Player;
 use pocketmine\scheduler\Task;
 use pocketmine\event\player\PlayerCommandPreprocessEvent;
 use pocketmine\utils\Internet;
+use pocketmine\math\Vector3;
 
 class Prison extends PluginBase implements Listener{
     private $config;
